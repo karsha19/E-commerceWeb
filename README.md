@@ -1,4 +1,4 @@
-# E-Commerce App
+# YourPersonalFavouriteStore App
 
 Full-stack e-commerce project: React (Vite + Tailwind) frontend and a
 Node.js/Express + MySQL backend, in one repo.

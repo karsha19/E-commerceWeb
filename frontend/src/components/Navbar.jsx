@@ -20,7 +20,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-surface/95 backdrop-blur border-b border-line">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-6">
         <Link to="/" className="font-display font-bold text-xl tracking-tight shrink-0">
-          Store<span className="text-cobalt">.</span>
+          YourPersonalFavouriteStore<span className="text-cobalt">.</span>
         </Link>
 
         <form onSubmit={handleSearch} className="flex-1 max-w-lg hidden sm:flex">
