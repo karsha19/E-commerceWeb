@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
   }
 };
 
-// @route GET /api/auth/profile   (protected)
+// @route GET /api/auth/profile   
 exports.getProfile = async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -83,7 +83,7 @@ exports.getProfile = async (req, res) => {
   }
 };
 
-// @route PUT /api/auth/profile   (protected)
+// @route PUT /api/auth/profile   
 exports.updateProfile = async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -97,7 +97,7 @@ exports.updateProfile = async (req, res) => {
   }
 };
 
-// @route PUT /api/auth/change-password   (protected)
+// @route PUT /api/auth/change-password   
 exports.changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;

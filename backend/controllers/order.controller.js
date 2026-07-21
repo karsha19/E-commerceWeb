@@ -2,9 +2,7 @@ const pool = require('../config/db');
 const { sendOrderConfirmationEmail } = require('../utils/sendEmail');
 const generateInvoicePDF = require('../utils/generateInvoice');
 
-// @route POST /api/orders   (protected)  body: { shipping: {...}, items optional (else from cart) }
-// Uses cash-on-delivery only. Reads items from the user's cart, validates stock,
-// creates the order + order_items, decrements stock, and clears the cart — all in one transaction.
+
 exports.placeOrder = async (req, res) => {
   const conn = await pool.getConnection();
   try {
@@ -20,7 +18,7 @@ exports.placeOrder = async (req, res) => {
 
     await conn.beginTransaction();
 
-    // Validate coupon (if provided) before touching anything else
+
     let couponDiscountPercent = 0;
     if (coupon_code) {
       const [couponRows] = await conn.query(
@@ -54,7 +52,7 @@ exports.placeOrder = async (req, res) => {
       return res.status(400).json({ message: 'Your cart is empty' });
     }
 
-    // Validate stock for every item before making any changes
+    
     for (const item of cartItems) {
       if (item.stock < item.quantity) {
         await conn.rollback();
@@ -99,7 +97,7 @@ exports.placeOrder = async (req, res) => {
     await conn.commit();
     conn.release();
 
-    // Fire-and-forget: never let email issues block the order response
+    
     sendOrderConfirmationEmail({
       to: userRow.email,
       name: userRow.name,
@@ -117,7 +115,7 @@ exports.placeOrder = async (req, res) => {
   }
 };
 
-// @route GET /api/orders/:id/invoice   (protected - owner or admin) - streams a PDF
+
 exports.downloadInvoice = async (req, res) => {
   try {
     const { id } = req.params;
@@ -140,7 +138,7 @@ exports.downloadInvoice = async (req, res) => {
   }
 };
 
-// @route GET /api/orders   (protected) - current user's order history
+
 exports.getMyOrders = async (req, res) => {
   try {
     const [orders] = await pool.query(
@@ -154,7 +152,6 @@ exports.getMyOrders = async (req, res) => {
   }
 };
 
-// @route GET /api/orders/:id   (protected) - single order with items (owner or admin)
 exports.getOrderById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -179,7 +176,7 @@ exports.getOrderById = async (req, res) => {
   }
 };
 
-// @route GET /api/orders/admin/all   (admin only)
+
 exports.getAllOrders = async (req, res) => {
   try {
     const { status, page = 1, limit = 20 } = req.query;
@@ -216,7 +213,7 @@ exports.getAllOrders = async (req, res) => {
   }
 };
 
-// @route PUT /api/orders/:id/status   (admin only)  body: { status }
+
 exports.updateOrderStatus = async (req, res) => {
   try {
     const { id } = req.params;
@@ -239,7 +236,7 @@ exports.updateOrderStatus = async (req, res) => {
   }
 };
 
-// @route GET /api/orders/admin/analytics   (admin only)
+
 exports.getSalesAnalytics = async (req, res) => {
   try {
     const [[totals]] = await pool.query(

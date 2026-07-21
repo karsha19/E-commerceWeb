@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
     try {
       await addToCart(product.id, 1);
     } catch {
-      // could surface a toast here
+      
     }
   }
 

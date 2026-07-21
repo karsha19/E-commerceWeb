@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// @route POST /api/recently-viewed/:productId   (protected) - call when a user opens a product page
+
 exports.recordView = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -13,7 +13,7 @@ exports.recordView = async (req, res) => {
       [req.user.id, productId]
     );
 
-    // Keep only the most recent 20 entries per user to avoid unbounded growth
+  
     await pool.query(
       `DELETE FROM recently_viewed
        WHERE user_id = ? AND id NOT IN (

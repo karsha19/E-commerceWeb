@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// @route GET /api/users   (admin only)
+//admin only 
 exports.getAllUsers = async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -13,7 +13,7 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-// @route PUT /api/users/:id/role   (admin only)  body: { role }
+
 exports.updateUserRole = async (req, res) => {
   try {
     const { id } = req.params;
@@ -38,7 +38,6 @@ exports.updateUserRole = async (req, res) => {
   }
 };
 
-// @route DELETE /api/users/:id   (admin only)
 exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;

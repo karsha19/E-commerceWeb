@@ -6,14 +6,14 @@ const {
   getAllOrders, updateOrderStatus, getSalesAnalytics
 } = require('../controllers/order.controller');
 
-router.use(protect); // all order routes require login
+router.use(protect); 
 
-// Admin routes (declared before /:id so they aren't swallowed by the param route)
+
 router.get('/admin/all', adminOnly, getAllOrders);
 router.get('/admin/analytics', adminOnly, getSalesAnalytics);
 router.put('/:id/status', adminOnly, updateOrderStatus);
 
-// Customer routes
+
 router.post('/', placeOrder);
 router.get('/', getMyOrders);
 router.get('/:id', getOrderById);

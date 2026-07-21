@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// @route GET /api/wishlist   (protected)
+
 exports.getWishlist = async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -18,7 +18,6 @@ exports.getWishlist = async (req, res) => {
   }
 };
 
-// @route POST /api/wishlist   (protected)  body: { product_id }
 exports.addToWishlist = async (req, res) => {
   try {
     const { product_id } = req.body;
@@ -40,7 +39,7 @@ exports.addToWishlist = async (req, res) => {
   }
 };
 
-// @route DELETE /api/wishlist/:productId   (protected)
+
 exports.removeFromWishlist = async (req, res) => {
   try {
     const { productId } = req.params;

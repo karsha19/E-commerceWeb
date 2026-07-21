@@ -5,7 +5,7 @@ const {
   getCart, addToCart, updateCartItem, removeFromCart, clearCart
 } = require('../controllers/cart.controller');
 
-router.use(protect); // all cart routes require login
+router.use(protect); 
 
 router.get('/', getCart);
 router.post('/', addToCart);

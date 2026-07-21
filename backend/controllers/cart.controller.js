@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// @route GET /api/cart   (protected)
+// @route GET /api/cart   
 exports.getCart = async (req, res) => {
   try {
     const [rows] = await pool.query(
@@ -27,7 +27,7 @@ exports.getCart = async (req, res) => {
   }
 };
 
-// @route POST /api/cart   (protected)  body: { product_id, quantity }
+// @route POST /api/cart
 exports.addToCart = async (req, res) => {
   try {
     const { product_id, quantity = 1 } = req.body;
@@ -50,7 +50,7 @@ exports.addToCart = async (req, res) => {
   }
 };
 
-// @route PUT /api/cart/:productId   (protected)  body: { quantity }
+// @route PUT /api/cart/:productId   
 exports.updateCartItem = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -79,7 +79,7 @@ exports.updateCartItem = async (req, res) => {
   }
 };
 
-// @route DELETE /api/cart/:productId   (protected)
+// @route DELETE /api/cart/:productId   
 exports.removeFromCart = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -97,7 +97,7 @@ exports.removeFromCart = async (req, res) => {
   }
 };
 
-// @route DELETE /api/cart   (protected) - clear entire cart
+// @route DELETE /api/cart  
 exports.clearCart = async (req, res) => {
   try {
     await pool.query('DELETE FROM cart WHERE user_id = ?', [req.user.id]);

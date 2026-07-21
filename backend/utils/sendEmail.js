@@ -1,8 +1,6 @@
 const nodemailer = require('nodemailer');
 
-// Uses standard SMTP env vars. Works with Gmail (with an App Password), Mailtrap,
-// SendGrid SMTP, etc. If SMTP_HOST is not configured, emails are skipped silently
-// (logged to console) so local dev doesn't crash without email set up.
+
 function getTransporter() {
   if (!process.env.SMTP_HOST) return null;
 
@@ -60,7 +58,7 @@ async function sendOrderConfirmationEmail({ to, name, orderId, total, items }) {
       html
     });
   } catch (err) {
-    // Never let email failures break the order flow
+    
     console.error('Failed to send order confirmation email:', err.message);
   }
 }

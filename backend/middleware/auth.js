@@ -19,7 +19,7 @@ function protect(req, res, next) {
   }
 }
 
-// Restricts a route to admin-only access. Use AFTER `protect`.
+
 function adminOnly(req, res, next) {
   if (req.user && req.user.role === 'admin') {
     return next();

@@ -1,6 +1,5 @@
 const pool = require('../config/db');
 
-// Recalculates and stores a product's average rating
 async function refreshProductRating(conn, productId) {
   const [[{ avgRating }]] = await conn.query(
     'SELECT COALESCE(AVG(rating), 0) AS avgRating FROM reviews WHERE product_id = ?',
@@ -9,7 +8,7 @@ async function refreshProductRating(conn, productId) {
   await conn.query('UPDATE products SET rating = ? WHERE id = ?', [Number(avgRating).toFixed(2), productId]);
 }
 
-// @route GET /api/products/:productId/reviews
+
 exports.getReviews = async (req, res) => {
   try {
     const { productId } = req.params;

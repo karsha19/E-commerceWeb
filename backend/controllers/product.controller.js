@@ -1,7 +1,6 @@
 const pool = require('../config/db');
 
-// @route GET /api/products
-// Supports: ?search=&category=&brand=&minPrice=&maxPrice=&sort=price_asc|price_desc|rating|newest&page=&limit=
+
 exports.getProducts = async (req, res) => {
   try {
     const {
@@ -76,7 +75,7 @@ exports.getProducts = async (req, res) => {
   }
 };
 
-// @route GET /api/products/:id
+
 exports.getProductById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -96,7 +95,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// @route GET /api/products/:id/related
+
 exports.getRelatedProducts = async (req, res) => {
   try {
     const { id } = req.params;
@@ -113,8 +112,7 @@ exports.getRelatedProducts = async (req, res) => {
     res.status(500).json({ message: 'Server error fetching related products' });
   }
 };
-
-// @route POST /api/products   (admin only)
+//admin only routes
 exports.createProduct = async (req, res) => {
   try {
     const { name, description, price, discount, brand, stock, category_id } = req.body;
@@ -137,7 +135,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// @route PUT /api/products/:id   (admin only)
+
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -173,7 +171,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// @route DELETE /api/products/:id   (admin only)
+
 exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;

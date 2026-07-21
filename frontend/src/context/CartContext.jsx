@@ -22,7 +22,7 @@ export function CartProvider({ children }) {
       setItems(data.items);
       setSubtotal(data.subtotal);
     } catch {
-      // silent — nav badge just won't update
+      
     } finally {
       setLoading(false);
     }

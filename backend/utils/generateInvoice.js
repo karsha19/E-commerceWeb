@@ -1,7 +1,6 @@
 const PDFDocument = require('pdfkit');
 
-// Streams a PDF invoice directly to an HTTP response.
-// `order` = row from `orders` table, `items` = array of order_items joined with product name.
+
 function generateInvoicePDF(order, items, res) {
   const doc = new PDFDocument({ margin: 50 });
 

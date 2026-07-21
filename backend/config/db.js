@@ -13,7 +13,7 @@ const pool = mysql.createPool({
   dateStrings: true
 });
 
-// Quick sanity check on startup
+
 (async () => {
   try {
     const conn = await pool.getConnection();
